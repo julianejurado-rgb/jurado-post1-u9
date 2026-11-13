@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Mis tareas</title>
+  <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+  <h1>Mis tareas</h1>
+
+  <p class="error" th:if="${error}" th:text="${error}"></p>
+
+  <form th:action="@{/tareas}" method="post">
+    <label>Título: <input type="text" name="titulo" required /></label>
+    <label>Descripción: <input type="text" name="descripcion" /></label>
+    <button type="submit">Crear tarea</button>
+  </form>
+
+  <form th:action="@{/tareas}" method="get">
+    <label>Buscar por título: <input type="text" name="q" th:value="${q}" /></label>
+    <button type="submit">Buscar</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr><th>Título</th><th>Descripción</th><th>Completada</th></tr>
+    </thead>
+    <tbody>
+      <tr th:each="t : ${tareas}">
+        <td th:text="${t.titulo}"></td>
+        <td th:text="${t.descripcion}"></td>
+        <td th:text="${t.completada} ? 'Sí' : 'No'"></td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(tareas)}">
+        <td colspan="3">No hay tareas que coincidan.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><a th:href="@{/dashboard}">Volver al dashboard</a></p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+  <h1>Dashboard</h1>
+
+  <!--/* th:text escapa el contenido. Si el nombre del usuario es
+       "<script>alert(1)</script>", Thymeleaf lo renderiza como
+       &lt;script&gt;alert(1)&lt;/script&gt; y el navegador lo muestra como
+       texto plano, sin ejecutarlo. */-->
+  <p>Bienvenido, <span th:text="${usuario}"></span></p>
+
+  <p class="nav">
+    <a th:href="@{/tareas}">Mis tareas</a>
+    <!--/* Solo visible para ADMIN */-->
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">
+      Panel de Administración
+    </a>
+  </p>
+
+  <form th:action="@{/logout}" method="post">
+    <button type="submit">Cerrar Sesión</button>
+  </form>
+</body>
+</html>

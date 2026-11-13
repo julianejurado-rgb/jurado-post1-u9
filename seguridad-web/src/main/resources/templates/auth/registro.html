@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro</title>
+  <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+  <h1>Registro de usuario</h1>
+  <form th:action="@{/registro}" th:object="${usuario}" method="post">
+    <label>Nombre:
+      <input type="text" th:field="*{nombre}" />
+      <span class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+    </label>
+    <label>Correo:
+      <input type="email" th:field="*{email}" />
+      <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </label>
+    <label>Contraseña (mínimo 8 caracteres):
+      <input type="password" th:field="*{contrasenia}" />
+      <span class="error" th:if="${#fields.hasErrors('contrasenia')}" th:errors="*{contrasenia}"></span>
+    </label>
+    <button type="submit">Registrarse</button>
+  </form>
+  <p><a th:href="@{/login}">Volver al inicio de sesión</a></p>
+</body>
+</html>

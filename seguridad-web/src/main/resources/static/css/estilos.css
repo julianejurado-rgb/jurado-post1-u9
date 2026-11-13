@@ -1,0 +1,9 @@
+body { font-family: Arial, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+label { display: block; margin: 0.6rem 0; }
+input[type=text], input[type=email], input[type=password] { padding: 6px; width: 260px; }
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; }
+th { background: #065A82; color: white; }
+.error { color: #C62828; }
+.ok { color: #2E7D32; }
+.nav a { margin-right: 1rem; }
